@@ -1,0 +1,30 @@
+# Java
+target/
+*.class
+*.jar
+.idea/
+*.iml
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+.pytest_cache/
+
+# Data — never commit raw data
+ml/experiments/data/
+*.csv
+*.parquet
+*.feather
+
+# Env files — never commit secrets
+.env
+*.env
+
+# Docker volumes
+data/
+
+# OS
+.DS_Store
+Thumbs.db
