@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "feature-pipeline"
+version = "0.1.0"
+description = "Shared feature computation — single source of truth for all features across causal and forecast pipelines"
+authors = ["Khandoker Shawon Mahomud <kmahomud811@gmail.com>"]
+readme = "README.md"
+packages = [{include = "app"}]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.15"
+
+# Data processing
+pandas = "^2.2.2"
+numpy = "^1.26.4"
+pyarrow = "^16.0.0"
+scikit-learn = "^1.4.2"
+
+# Data quality — Great Expectations
+great-expectations = "^0.18.19"
+
+# Database
+psycopg2-binary = "^2.9.9"
+sqlalchemy = "^2.0.30"
+
+# Kafka — publish feature vectors
+confluent-kafka = "^2.4.0"
+
+# Redis — online feature cache
+redis = "^5.0.4"
+
+# Observability
+prometheus-client = "^0.20.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.0"
+black = "^24.4.2"
+ruff = "^0.4.4"
+mypy = "^1.10.0"
+jupyter = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

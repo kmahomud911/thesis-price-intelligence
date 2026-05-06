@@ -44,12 +44,34 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
       KAFKA_LOG_RETENTION_HOURS: 168
+      KAFKA_MESSAGE_MAX_BYTES: 10485760
+      KAFKA_REPLICA_FETCH_MAX_BYTES: 10485760
     healthcheck:
       test: ["CMD", "kafka-broker-api-versions", "--bootstrap-server", "localhost:9092"]
       interval: 15s
       timeout: 10s
       retries: 5
-
+  # ══════════════════════════════════════════
+  #  SCHEMA REGISTRY
+  # ══════════════════════════════════════════
+  schema-registry:
+    image: confluentinc/cp-schema-registry:7.6.0
+    container_name: thesis-schema-registry
+    networks: [ thesis-net ]
+    ports:
+      - "8090:8081"
+    depends_on:
+      kafka:
+        condition: service_healthy
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka:29092
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8081/subjects" ]
+      interval: 15s
+      timeout: 10s
+      retries: 5
   # ══════════════════════════════════════════
   # STORAGE
   # ══════════════════════════════════════════
