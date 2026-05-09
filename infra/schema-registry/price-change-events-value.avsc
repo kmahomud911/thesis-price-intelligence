@@ -1,0 +1,23 @@
+{
+  "type": "record",
+  "name": "PriceChangeEvent",
+  "namespace": "com.thesis.ingestion.events",
+  "doc": "Detected price change between two observations",
+  "fields": [
+    {"name": "version", "type": "int", "doc": "Schema version"},
+    {"name": "productId", "type": "string", "doc": "Unique product identifier"},
+    {"name": "oldPrice", "type": "double", "doc": "Previous observed price"},
+    {"name": "newPrice", "type": "double", "doc": "New observed price"},
+    {"name": "changePct", "type": "double", "doc": "Percentage change — positive for UP, negative for DOWN"},
+    {
+      "name": "direction",
+      "type": {
+        "type": "enum",
+        "name": "PriceDirection",
+        "symbols": ["UP", "DOWN"]
+      },
+      "doc": "Direction of price change"
+    },
+    {"name": "detectedAt", "type": {"type": "long", "logicalType": "timestamp-millis"}, "doc": "Detection timestamp in epoch milliseconds"}
+  ]
+}

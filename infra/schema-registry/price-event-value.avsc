@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "name": "PriceEvent",
+  "namespace": "com.thesis.ingestion.events",
+  "doc": "Raw price observation scraped from competitor or own listing",
+  "fields": [
+    {"name": "version", "type": "int", "doc": "Schema version"},
+    {"name": "productId", "type": "string", "doc": "Unique product identifier"},
+    {"name": "competitorId", "type": "string", "doc": "Competitor identifier — own listing uses 'SELF'"},
+    {"name": "price", "type": "double", "doc": "Observed price"},
+    {"name": "currency", "type": "string", "doc": "ISO 4217 currency code"},
+    {"name": "availability", "type": "boolean", "doc": "Product availability at time of scrape"},
+    {"name": "scrapedAt", "type": {"type": "long", "logicalType": "timestamp-millis"}, "doc": "Scrape timestamp in epoch milliseconds"}
+  ]
+}
