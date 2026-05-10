@@ -55,7 +55,7 @@
       <scope>runtime</scope>
     </dependency>
 
-    <!-- Actuator — /actuator/health for Docker healthcheck -->
+    <!-- Actuator — /actuator/health for Docker health check -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
@@ -73,7 +73,15 @@
       <artifactId>lombok</artifactId>
       <scope>provided</scope>
     </dependency>
-
+    <!-- Flyway -->
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-database-postgresql</artifactId>
+    </dependency>
     <!-- Test -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
